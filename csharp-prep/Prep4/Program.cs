@@ -24,29 +24,24 @@ class Program
         int listSum = numberList.Sum();
         double listAvg = numberList.Average();
         int listMax = numberList.Max();
+        int listLow = numberList.Min();
         int listLen = numberList.Count;
 
         int lowPosNum = int.MaxValue;
         foreach (int item in numberList)
         {
-            if (item > 0)
+            if (item > 0 && item < lowPosNum)
             {
-                if (item < lowPosNum)
-                {
-                    lowPosNum = item;
-                }
+                lowPosNum = item;
             }
         }
 
         int highNegNum = int.MinValue;
         foreach (int item in numberList)
         {
-            if (item < 0)
+            if (item < 0 && item > highNegNum)
             {
-                if (item > highNegNum)
-                {
-                    highNegNum = item;
-                }
+                highNegNum = item;
             }
         }
     
@@ -57,6 +52,15 @@ class Program
         {
             Console.WriteLine(numberList[i]);
         }
+        
+        numberList.Sort();
+
+        Console.WriteLine();
+        Console.WriteLine("Here is your list in ascending order");
+        foreach (int item in numberList)
+        {
+            Console.WriteLine(item);
+        }
 
         Console.WriteLine();
         Console.WriteLine("These are some stats for your list:");
@@ -64,6 +68,7 @@ class Program
         Console.WriteLine($"Sum: {listSum}");
         Console.WriteLine($"Average value: {listAvg}");
         Console.WriteLine($"Highest number: {listMax}");
+        Console.WriteLine($"Lowest number: {listLow}");
         Console.WriteLine($"Lowest positive number: {lowPosNum}");
         Console.WriteLine($"Highest negative number: {highNegNum}");
     }
