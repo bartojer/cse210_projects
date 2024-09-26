@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 class Program
 {
@@ -23,7 +25,31 @@ class Program
         double listAvg = numberList.Average();
         int listMax = numberList.Max();
         int listLen = numberList.Count;
-        
+
+        int lowPosNum = int.MaxValue;
+        foreach (int item in numberList)
+        {
+            if (item > 0)
+            {
+                if (item < lowPosNum)
+                {
+                    lowPosNum = item;
+                }
+            }
+        }
+
+        int highNegNum = int.MinValue;
+        foreach (int item in numberList)
+        {
+            if (item < 0)
+            {
+                if (item > highNegNum)
+                {
+                    highNegNum = item;
+                }
+            }
+        }
+    
         // print statements
 
         Console.WriteLine("Here's your list");
@@ -33,11 +59,13 @@ class Program
         }
 
         Console.WriteLine();
-        Console.WriteLine($"Your list has {listLen} numbers");
-        Console.WriteLine($"Your list's sum is {listSum}");
-        Console.WriteLine($"Your list's average is {listAvg}");
-        Console.WriteLine($"Your list's highest number is {listMax}");
-
+        Console.WriteLine("These are some stats for your list:");
+        Console.WriteLine($"Total numbers: {listLen}");
+        Console.WriteLine($"Sum: {listSum}");
+        Console.WriteLine($"Average value: {listAvg}");
+        Console.WriteLine($"Highest number: {listMax}");
+        Console.WriteLine($"Lowest positive number: {lowPosNum}");
+        Console.WriteLine($"Highest negative number: {highNegNum}");
     }
 }
 //for (int i = 0; i < words.Count; i++)
