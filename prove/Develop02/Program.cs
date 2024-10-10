@@ -4,7 +4,22 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Make Journal");
+        PromptGenerator prompt = new();
+        string newPrompt = prompt.GeneratePrompt();
+        Console.WriteLine(newPrompt);
+
+        Entry newEntry = new();
+        newEntry._filename = "journal.txt";
+        newEntry.Write();
+        newEntry.Save(newPrompt);
+
+        Journal newJournal = new();
+        newJournal._filename = "journal.txt";
+        newJournal.Display();
+
+
+
+
     }
 }
 
@@ -14,26 +29,8 @@ class Program
 
 
 
-class MakeJournal
-{
-    
-// FUNCTION REQUIREMENTS: 
 
-    //write new entry
-
-    //display journal
-
-    //save journal to file
-    
-    //load journal
-
-    //provide menu
-
-    //provide prompts
-
-}
-
-//DESIGN PHILOSOPHY:develop the simplest yet best built out journal app.
+//DESIGN PHILOSOPHY:develop the simplest yet best built journal app.
 
 /* MENU
     1. Write
@@ -49,7 +46,7 @@ class MakeJournal
         - Load
     2. Entry
         - Write
-        - Save 
+        - Save
     3. PromptGenerator
         - (In tandem with 'Write')
 */
