@@ -22,8 +22,8 @@ class Program
         {
             if (i == 1)
             {
-                entry._fileName = "journal.txt";
-                journal._fileName = "journal.txt";
+                entry._fileName = "journal1.txt";
+                journal._fileName = "journal1.txt";
                 i = 2;
             }
             Console.WriteLine();
@@ -46,14 +46,19 @@ class Program
             else if ("3" == menuInput)  //load
             {
                 Console.WriteLine("Type '1' to load an existing journal, or '2' to create a new journal.");
+                Console.WriteLine("Press anything else to go back to menu.");
                 Console.Write("> ");
                 string loadInput = Console.ReadLine();
+                Console.WriteLine();
 
                 if ("1" == loadInput)   // existing journal
                 {
-                    Console.WriteLine("Enter journal file name");
+                    ShowTextFiles();
+                    Console.WriteLine();
+
+                    Console.WriteLine("Enter the journal name:");
                     Console.Write("> ");
-                    string loadFileName = Console.ReadLine();
+                    string loadFileName = Console.ReadLine() + ".txt";
                     entry._fileName = loadFileName;
                     journal.Load(loadFileName);
                 }
@@ -65,6 +70,9 @@ class Program
                     string newFileName = Console.ReadLine();
                     Journal.NewJournal(newFileName);
                     journal.Load(newFileName);
+                }
+                else{
+                    continue;
                 }
             }
 
@@ -92,5 +100,23 @@ class Program
             Console.WriteLine(item);
         }
         Console.Write("> ");
+    }
+
+    static void ShowTextFiles()
+    {
+        string[] txtFiles = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.txt");
+
+        if (0 == txtFiles.Length)
+        {
+            Console.WriteLine("No journal files found.");
+        }
+        else
+        {
+            Console.WriteLine("Available journal files:");
+            foreach (string file in txtFiles)
+            {
+                Console.WriteLine(Path.GetFileNameWithoutExtension(file));
+            }
+        }
     }
 }
