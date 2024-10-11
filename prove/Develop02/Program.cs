@@ -1,91 +1,96 @@
 using System;
+using System.Net.Quic;
 
 class Program
+
 {
     static void Main(string[] args)
     {
+
+    // 1. Write
+    // 2. Display // Or call 'View Entries'
+    // 3. Load
+    // 4. Save
+    // 5. Quit
+
         PromptGenerator prompt = new();
-        string newPrompt = prompt.GeneratePrompt();
-        Console.WriteLine(newPrompt);
+        Journal journal = new();
+        Entry entry = new();
+        int i = 1;
+        
+        while (true)
+        {
+            if (i == 1)
+            {
+                entry._fileName = "journal.txt";
+                journal._fileName = "journal.txt";
+                i = 2;
+            }
+            Console.WriteLine();
+            DisplayMenu();
+            string menuInput = Console.ReadLine();
 
-        Entry newEntry = new();
-        newEntry._filename = "journal.txt";
-        newEntry.Write();
-        newEntry.Save(newPrompt);
+            if ("1" == menuInput)   // write
+            {
+                string newPrompt = prompt.GeneratePrompt();
+                Console.WriteLine(newPrompt);
+                entry.Write();
+                entry.Save(newPrompt); 
+            }
 
-        Journal newJournal = new();
-        newJournal._filename = "journal.txt";
-        newJournal.Display();
+            else if ("2" == menuInput)  // display
+            {
+                journal.Display();
+            }
 
+            else if ("3" == menuInput)  //load
+            {
+                Console.WriteLine("Type '1' to load an existing journal, or '2' to create a new journal.");
+                Console.Write("> ");
+                string loadInput = Console.ReadLine();
 
+                if ("1" == loadInput)   // existing journal
+                {
+                    Console.WriteLine("Enter journal file name");
+                    Console.Write("> ");
+                    string loadFileName = Console.ReadLine();
+                    entry._fileName = loadFileName;
+                    journal.Load(loadFileName);
+                }
+                
+                else if ("2" == loadInput)  // new journal
+                {
+                    Console.WriteLine("Enter new journal name. If using multiple words, connect_them_with_underscores (no spaces).");
+                    Console.Write("> ");
+                    string newFileName = Console.ReadLine();
+                    Journal.NewJournal(newFileName);
+                    journal.Load(newFileName);
+                }
+            }
 
+            else if (("4" == menuInput) || ("q" == menuInput))  // quit
+            {
+                break;
+            }
 
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Type a number between 1 and 4, then press enter.");
+                continue;
+            }
+        }
+    }
+
+    static void DisplayMenu()
+    {
+        List<string> menu = ["1. Write", "2. Display", "3. Load", "4. Quit"];
+
+        Console.WriteLine("Main Menu: please choose from the following options");
+        foreach (string item in menu)
+        {
+            Console.WriteLine(item);
+        }
+        Console.Write("> ");
     }
 }
-
-//yall here?
-// sure am!
-//Yippee!!!
-
-
-
-
-//DESIGN PHILOSOPHY:develop the simplest yet best built journal app.
-
-/* MENU
-    1. Write
-    2. Display // Or call 'View Entries'
-    3. Load
-    4. Save
-    5. Quit
-*/
-
-/* CLASSES:
-    1. Jounal
-        - Display
-        - Load
-    2. Entry
-        - Write
-        - Save
-    3. PromptGenerator
-        - (In tandem with 'Write')
-*/
-
-/* USER EXPERIENCE - AVENUES:
-    A. Write only
-        1. Open app
-        2. Write (random prompt)
-        3. Save
-        4. Quit
-    B. View only
-        1. Open app
-        2. Load
-        3. Display
-        4. Quit
-    C. Load & write only
-        1. Open app
-        2. Load
-        3. Write
-        4. Save
-        5. Quit
-    D. Open & quit only
-        1. Open app
-        2. Quit app
-    E.
-        1. Open app
-        2. Load (read)
-        3. Quit
-    F:
-        1. 
-        2. 
-        3.
-        4.
-        5.
-    G:
-        1.
-        2.
-        3.
-        4.
-        5.
-
-*/

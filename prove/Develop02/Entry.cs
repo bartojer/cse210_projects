@@ -7,7 +7,7 @@ using System.Threading.Tasks.Dataflow;
 class Entry
 {
     //make entry
-    public string _filename;   // where it saves
+    public string _fileName;   // where it saves
     DateTime _date = DateTime.Now;      //dates entry
     string _newEntry;
     string _titleEntry;
@@ -21,12 +21,11 @@ class Entry
     public void Save(string prompt)
     {
         
-        // Create a TextInfo object to handle case conversions
         TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
         string _title = textInfo.ToTitleCase(_titleEntry);
         //save _today, _title, _newEntry to _filename
-        using (StreamWriter outputFile = new(_filename, true))
+        using (StreamWriter outputFile = new(_fileName, true))
         {
             outputFile.WriteLine(_date);
             outputFile.WriteLine(_title);
