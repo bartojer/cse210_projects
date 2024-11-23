@@ -85,29 +85,6 @@ class Menu
                     _goalList.Add(new Eternal(name, description, pointValue, 0));
                 }
                 break;
-
-            // case "4":   // Checklist
-            //     Console.Write("Enter goal name: ");
-            //     name = Console.ReadLine();
-            //     Console.Write("Enter goal description: ");
-            //     description = Console.ReadLine();
-            //     Console.Write("Enter point value per item: ");
-            //     pointValue = int.Parse(Console.ReadLine());
-                
-            //     Checklist checklist = new Checklist(name, description, pointValue);
-                
-            //     string itemInput = "";
-            //     Console.WriteLine("Enter checklist items (empty line to finish):");
-            //     while (true)
-            //     {
-            //         Console.Write("> ");
-            //         itemInput = Console.ReadLine();
-            //         if (string.IsNullOrWhiteSpace(itemInput)) break;
-            //         checklist.AddItem(itemInput);
-            //     }
-                
-            //     _goalList.Add(checklist);
-            //     break;
         }
     }
     public void ListGoals()
