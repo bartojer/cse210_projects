@@ -35,6 +35,6 @@ class Order
     }
     public void DisplayShipingLabel()
     {
-        Console.WriteLine($"{_customer.GetName()}, {_customer.GetAddress()}");
+        Console.WriteLine($"{_customer.GetName()}\n{_customer.GetAddress()}");
     }
 }
