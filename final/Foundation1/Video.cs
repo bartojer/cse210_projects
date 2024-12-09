@@ -3,10 +3,10 @@ using System.Transactions;
 
 class Video
 {
-    string _title;
-    string _author;
-    int _seconds;
-    List<Comment> _comments = [];
+    private string _title;
+    private string _author;
+    private int _seconds;
+    private List<Comment> _comments = [];
 
     public Video(string title, string author, int seconds)
     {

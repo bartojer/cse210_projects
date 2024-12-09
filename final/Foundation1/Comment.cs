@@ -1,6 +1,6 @@
 class Comment
 {
-    string _username;
+    private string _username;
     string _text;
 
     public Comment(string username, string text)

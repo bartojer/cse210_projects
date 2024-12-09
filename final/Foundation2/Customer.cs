@@ -2,9 +2,9 @@ using System.ComponentModel;
 
 class Customer
 {
-    string _name;
-    Address _address;
-    bool _inUSA;
+    private string _name;
+    private Address _address;
+    private bool _inUSA;
 
     public Customer(string name)
     {
